@@ -1,6 +1,6 @@
 // api/createBlog.js
 import connect from "../lib/mongoose.js";
-import Blog from "../models/Blog.js";
+import Blog from "../models/projectModels.js";
 
 export default async function handler(req, res) {
   await connect();
