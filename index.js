@@ -5,6 +5,9 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import BlogRoutes from "./routes/blogsRoutes.js";
 
+// Import models to ensure they're registered
+import Blog, { BlogCategory } from "./models/projectModels.js";
+
 dotenv.config();
 
 const app = express();

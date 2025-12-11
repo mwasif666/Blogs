@@ -1,5 +1,16 @@
 import mongoose from "mongoose";
 
+// BlogCategory Schema
+const blogCategorySchema = new mongoose.Schema(
+  {
+    title: { type: String, required: true, trim: true },
+    slug: { type: String, required: true, unique: true, trim: true },
+    description: { type: String, trim: true },
+  },
+  { timestamps: true }
+);
+
+// Blog Schema
 const blogSchema = new mongoose.Schema(
   {
     title: { type: String, required: true, trim: true },
@@ -27,4 +38,7 @@ const blogSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+export const BlogCategory =
+  mongoose.models.BlogCategory ||
+  mongoose.model("BlogCategory", blogCategorySchema);
 export default mongoose.models.Blog || mongoose.model("Blog", blogSchema);

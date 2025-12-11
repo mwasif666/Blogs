@@ -36,19 +36,24 @@ export const create = async (req, res) => {
 
 export const getBlogs = async (req, res) => {
   try {
-    const blog = await Blog.find();
+    const blog = await Blog.find()
+      .populate("category", "title description")
+      .populate("author", "name email")
+      .sort({ createdAt: -1 });
     res.status(200).json(blog);
   } catch (error) {
-    res.staus(500).json({ message: error.message });
+    res.status(500).json({ message: error.message });
   }
 };
 
 export const singleGetBlogs = async (req, res) => {
   try {
     const { id } = req.params;
-    const blog = await Blog.findById(id);
+    const blog = await Blog.findById(id)
+      .populate("category", "title description")
+      .populate("author", "name email");
     res.status(200).json(blog);
   } catch (error) {
-    res.staus(500).json({ message: error.message });
+    res.status(500).json({ message: error.message });
   }
 };
