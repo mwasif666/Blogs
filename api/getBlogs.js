@@ -4,6 +4,14 @@ import Blog from "../models/projectModels.js";
 
 export default async function handler(req, res) {
   try {
+    if (!process.env.MONGO_URL) {
+      return res
+        .status(500)
+        .end(
+          "MONGO_URL missing — please set the MONGO_URL environment variable"
+        );
+    }
+
     await connect(); // Connect to MongoDB
 
     if (req.method === "GET") {
